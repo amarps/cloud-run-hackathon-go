@@ -88,7 +88,7 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	*lastX = posX
 	*lastY = posY
 
-	if !wasHit || !*isStuck {
+	if !wasHit {
 		return "F"
 	}
 
