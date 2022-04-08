@@ -49,11 +49,11 @@ func play(input ArenaUpdate) (response string) {
 	var dimX = input.Arena.Dimensions[0] - 1
 	var dimY = input.Arena.Dimensions[1] - 1
 
-	if dir == "E" && posX == dimX || dir == "W" && posY == dimY {
+	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
 		return "L"
 	}
 
-	if dir == "W" && posX == 0 || dir == "S" && posY == 0 {
+	if dir == "W" && posX == 0 || dir == "N" && posY == 0 {
 		return "L"
 	}
 
