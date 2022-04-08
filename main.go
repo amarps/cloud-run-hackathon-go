@@ -62,6 +62,9 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 		*isStuck = false
 	}
 
+	*lastX = posX
+	*lastY = posY
+
 	log.Println("#######################################################")
 	log.Println("DATA")
 	log.Printf("dir:%v\n", dir)
@@ -86,9 +89,6 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	if !wasHit || !*isStuck {
 		return "F"
 	}
-
-	*lastX = posX
-	*lastY = posY
 
 	return "T"
 }
