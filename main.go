@@ -48,6 +48,11 @@ func play(input ArenaUpdate) (response string) {
 	var posY = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Y
 	var dimX = input.Arena.Dimensions[0] - 1
 	var dimY = input.Arena.Dimensions[1] - 1
+	var wasHit = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].WasHit
+
+	log.Println("#######################################################")
+	log.Println("D")
+	log.Println("#######################################################")
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
 		return "L"
@@ -55,6 +60,10 @@ func play(input ArenaUpdate) (response string) {
 
 	if dir == "W" && posX == 0 || dir == "N" && posY == 0 {
 		return "L"
+	}
+
+	if !wasHit {
+		return "F"
 	}
 
 	return "T"
