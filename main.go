@@ -44,7 +44,14 @@ func play(input ArenaUpdate) (response string) {
 	log.Printf("IN: %#v", input)
 
 	var dir = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Direction
-	if dir == "N" || dir == "W" {
+	var posX = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].X
+	var posY = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Y
+
+	if dir == "E" && posX == 13 || dir == "W" && posY == 10 {
+		return "L"
+	}
+
+	if dir == "W" && posX == 0 || dir == "S" && posY == 0 {
 		return "L"
 	}
 
