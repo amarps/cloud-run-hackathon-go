@@ -57,7 +57,7 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	var dimX = input.Arena.Dimensions[0] - 1
 	var dimY = input.Arena.Dimensions[1] - 1
 	var wasHit = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].WasHit
-	if *lastX == posX || *lastY == posY {
+	if (*lastX == posX) && (*lastY == posY) {
 		*isStuck = true
 		return "T"
 	}
@@ -76,7 +76,7 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	log.Printf("lastX:%v\n", *lastX)
 	log.Printf("lastY:%v\n", *lastY)
 	log.Printf("isStuck:%v\n", *isStuck)
-	log.Printf("kkkk:%v\n", *lastX == posX || *lastY == posY)
+	log.Printf("kkkk:%v\n", *lastX == posX && *lastY == posY)
 	log.Println("#######################################################")
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
