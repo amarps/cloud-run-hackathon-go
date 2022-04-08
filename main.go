@@ -81,14 +81,14 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 		ret = "L"
 	}
 
+	*lastX = posX
+	*lastY = posY
+
 	if (*lastX == posX) && (*lastY == posY) {
 		*isStuck = true
 		log.Println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Stuck Shot")
 		ret = "T"
 	}
-
-	*lastX = posX
-	*lastY = posY
 
 	if !wasHit {
 		ret = "F"
@@ -98,6 +98,6 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	// rand := rand2.Intn(2)
 	// log.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	// return commands[rand]
-	log.Println("pppppppppppppppppppppppppppppppp Stuck Shot - " + ret)
+	log.Println("pppppppppppppppppppppppppppppppp Final Shot - " + ret)
 	return ret
 }
