@@ -86,6 +86,9 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	// rand := rand2.Intn(2)
 	// log.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	// return commands[rand]
+	if ret == "" {
+		ret = "T"
+	}
 	log.Println("pppppppppppppppppppppppppppppppp Final Shot - " + ret)
 	return ret
 }
