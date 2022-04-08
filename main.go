@@ -71,26 +71,33 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	log.Printf("kkkk:%v\n", *lastX == posX && *lastY == posY)
 	log.Println("#######################################################")
 
+	var ret string
+
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
-		return "L"
+		ret = "L"
 	}
 
 	if dir == "W" && posX == 0 || dir == "N" && posY == 0 {
-		return "L"
+		ret = "L"
 	}
 
 	if (*lastX == posX) && (*lastY == posY) {
 		*isStuck = true
 		log.Println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Stuck Shot")
-		return "T"
+		ret = "T"
 	}
 
 	*lastX = posX
 	*lastY = posY
 
+	if !wasHit {
+		ret = "F"
+	}
+
 	// commands := []string{"F", "T"}
 	// rand := rand2.Intn(2)
 	// log.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	// return commands[rand]
-	return "F"
+	log.Println("pppppppppppppppppppppppppppppppp Stuck Shot - " + ret)
+	return ret
 }
