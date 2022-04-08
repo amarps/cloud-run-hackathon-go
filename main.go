@@ -8,23 +8,26 @@ import (
 	"os"
 )
 
-var lastX int
-var lastY int
-var isStuck bool
+type Player struct {
+	lastX   int
+	lastY   int
+	isStuck bool
+}
 
 func main() {
 	port := "8080"
 	if v := os.Getenv("PORT"); v != "" {
 		port = v
 	}
-	http.HandleFunc("/", handler)
+	var p = &Player{}
+	http.HandleFunc("/", p.handler)
 
 	log.Printf("starting server on port :%s", port)
 	err := http.ListenAndServe(":"+port, nil)
 	log.Fatalf("http listen error: %v", err)
 }
 
-func handler(w http.ResponseWriter, req *http.Request) {
+func (u Player) handler(w http.ResponseWriter, req *http.Request) {
 	if req.Method == http.MethodGet {
 		fmt.Fprint(w, "Let the battle begin!")
 		return
@@ -40,11 +43,11 @@ func handler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	resp := play(v)
+	resp := play(v, u.lastX, u.lastY, u.isStuck)
 	fmt.Fprint(w, resp)
 }
 
-func play(input ArenaUpdate) (response string) {
+func play(input ArenaUpdate, lastX int, lastY int, isStuck bool) (response string) {
 	log.Printf("IN: %#v", input)
 
 	var dir = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Direction
