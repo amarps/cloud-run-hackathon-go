@@ -71,7 +71,7 @@ func play(input ArenaUpdate) (response string) {
 		return "L"
 	}
 
-	if !wasHit || isStuck {
+	if !wasHit || !isStuck {
 		return "F"
 	}
 
