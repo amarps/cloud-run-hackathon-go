@@ -55,13 +55,13 @@ func play(input ArenaUpdate) (response string) {
 	var wasHit = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].WasHit
 	if lastX == posX || lastY == posY {
 		isStuck = true
+	} else {
+		isStuck = false
 	}
 
 	log.Println("#######################################################")
 	log.Println("D")
 	log.Println("#######################################################")
-
-	if posX == 
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
 		return "L"
@@ -71,9 +71,12 @@ func play(input ArenaUpdate) (response string) {
 		return "L"
 	}
 
-	if !wasHit {
+	if !wasHit || isStuck {
 		return "F"
 	}
+
+	lastX = posX
+	lastY = posY
 
 	return "T"
 }
