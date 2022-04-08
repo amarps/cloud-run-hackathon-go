@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	rand2 "math/rand"
 	"net/http"
 	"os"
 )
@@ -50,9 +51,6 @@ func (u Player) handler(w http.ResponseWriter, req *http.Request) {
 func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response string) {
 	log.Printf("IN: %#v", input)
 
-	return "T"
-
-	*isStuck = false
 	var dir = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Direction
 	var posX = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].X
 	var posY = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Y
@@ -90,9 +88,7 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	*lastX = posX
 	*lastY = posY
 
-	if !wasHit {
-		return "F"
-	}
-
-	return "T"
+	commands := []string{"F", "T", "T"}
+	rand := rand2.Intn(3)
+	return commands[rand]
 }
