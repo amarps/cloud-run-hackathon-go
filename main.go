@@ -50,6 +50,7 @@ func (u Player) handler(w http.ResponseWriter, req *http.Request) {
 func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response string) {
 	log.Printf("IN: %#v", input)
 
+	*isStuck = false
 	var dir = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Direction
 	var posX = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].X
 	var posY = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Y
@@ -58,8 +59,7 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	var wasHit = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].WasHit
 	if *lastX == posX || *lastY == posY {
 		*isStuck = true
-	} else {
-		*isStuck = false
+		return "T"
 	}
 
 	*lastX = posX
@@ -76,6 +76,7 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	log.Printf("lastX:%v\n", *lastX)
 	log.Printf("lastY:%v\n", *lastY)
 	log.Printf("isStuck:%v\n", *isStuck)
+	log.Printf("kkkk:%v\n", *lastX == posX || *lastY == posY)
 	log.Println("#######################################################")
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
