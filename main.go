@@ -69,15 +69,14 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 		return ret
 	}
 
-	*lastX = posX
-	*lastY = posY
-
 	if (*lastX == posX) && (*lastY == posY) {
 		*isStuck = true
 		log.Println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Stuck Shot")
 		ret = "T"
-		return ret
 	}
+
+	*lastX = posX
+	*lastY = posY
 
 	if !wasHit {
 		ret = "F"
