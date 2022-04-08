@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	rand2 "math/rand"
 	"net/http"
 	"os"
 )
@@ -44,7 +43,10 @@ func handler(w http.ResponseWriter, req *http.Request) {
 func play(input ArenaUpdate) (response string) {
 	log.Printf("IN: %#v", input)
 
-	commands := []string{"F", "T"}
-	rand := rand2.Intn(2)
-	return commands[rand]
+	var dir = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Direction
+	if dir == "N" || dir == "W" {
+		return "L"
+	}
+
+	return "T"
 }
