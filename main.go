@@ -46,8 +46,10 @@ func play(input ArenaUpdate) (response string) {
 	var dir = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Direction
 	var posX = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].X
 	var posY = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Y
+	var dimX = input.Arena.Dimensions[0] - 1
+	var dimY = input.Arena.Dimensions[1] - 1
 
-	if dir == "E" && posX == 13 || dir == "W" && posY == 10 {
+	if dir == "E" && posX == dimX || dir == "W" && posY == dimY {
 		return "L"
 	}
 
