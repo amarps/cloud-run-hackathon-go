@@ -70,9 +70,9 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	log.Printf("dimX:%v\n", dimX)
 	log.Printf("dimY:%v\n", dimY)
 	log.Printf("wasHit:%v\n", wasHit)
-	log.Printf("lastX:%v\n", lastX)
-	log.Printf("lastY:%v\n", lastY)
-	log.Printf("isStuck:%v\n", isStuck)
+	log.Printf("lastX:%v\n", *lastX)
+	log.Printf("lastY:%v\n", *lastY)
+	log.Printf("isStuck:%v\n", *isStuck)
 	log.Println("#######################################################")
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
