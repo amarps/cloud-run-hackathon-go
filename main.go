@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	rand2 "math/rand"
 	"net/http"
 	"os"
 )
@@ -82,13 +81,16 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 
 	if (*lastX == posX) && (*lastY == posY) {
 		*isStuck = true
+		log.Println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Stuck Shot")
 		return "T"
 	}
 
 	*lastX = posX
 	*lastY = posY
 
-	commands := []string{"F", "T", "T"}
-	rand := rand2.Intn(3)
-	return commands[rand]
+	// commands := []string{"F", "T"}
+	// rand := rand2.Intn(2)
+	// log.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	// return commands[rand]
+	return "F"
 }
