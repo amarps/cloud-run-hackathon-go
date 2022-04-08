@@ -8,6 +8,10 @@ import (
 	"os"
 )
 
+var lastX int
+var lastY int
+var isStuck bool
+
 func main() {
 	port := "8080"
 	if v := os.Getenv("PORT"); v != "" {
@@ -49,10 +53,15 @@ func play(input ArenaUpdate) (response string) {
 	var dimX = input.Arena.Dimensions[0] - 1
 	var dimY = input.Arena.Dimensions[1] - 1
 	var wasHit = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].WasHit
+	if lastX == posX || lastY == posY {
+		isStuck = true
+	}
 
 	log.Println("#######################################################")
 	log.Println("D")
 	log.Println("#######################################################")
+
+	if posX == 
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
 		return "L"
