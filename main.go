@@ -57,28 +57,16 @@ func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response st
 	var dimY = input.Arena.Dimensions[1] - 1
 	var wasHit = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].WasHit
 
-	log.Println("#######################################################")
-	log.Println("DATA")
-	log.Printf("dir:%v\n", dir)
-	log.Printf("posX:%v\n", posX)
-	log.Printf("posY:%v\n", posY)
-	log.Printf("dimX:%v\n", dimX)
-	log.Printf("dimY:%v\n", dimY)
-	log.Printf("wasHit:%v\n", wasHit)
-	log.Printf("lastX:%v\n", *lastX)
-	log.Printf("lastY:%v\n", *lastY)
-	log.Printf("isStuck:%v\n", *isStuck)
-	log.Printf("kkkk:%v\n", *lastX == posX && *lastY == posY)
-	log.Println("#######################################################")
-
 	var ret string
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
 		ret = "L"
+		return ret
 	}
 
 	if dir == "W" && posX == 0 || dir == "N" && posY == 0 {
 		ret = "L"
+		return ret
 	}
 
 	*lastX = posX
