@@ -43,11 +43,11 @@ func (u Player) handler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	resp := play(v, u.lastX, u.lastY, u.isStuck)
+	resp := play(v, &u.lastX, &u.lastY, &u.isStuck)
 	fmt.Fprint(w, resp)
 }
 
-func play(input ArenaUpdate, lastX int, lastY int, isStuck bool) (response string) {
+func play(input ArenaUpdate, lastX *int, lastY *int, isStuck *bool) (response string) {
 	log.Printf("IN: %#v", input)
 
 	var dir = input.Arena.State["https://cloud-run-hackathon-go-7dzaoqbgzq-uc.a.run.app"].Direction
