@@ -60,7 +60,13 @@ func play(input ArenaUpdate) (response string) {
 	}
 
 	log.Println("#######################################################")
-	log.Println("D")
+	log.Println("DATA")
+	log.Printf("dir:%v\n", dir)
+	log.Printf("posX:%v\n", posX)
+	log.Printf("posY:%v\n", posY)
+	log.Printf("dimX:%v\n", dimX)
+	log.Printf("dimY:%v\n", dimY)
+	log.Printf("wasHit:%v\n", wasHit)
 	log.Println("#######################################################")
 
 	if dir == "E" && posX == dimX || dir == "S" && posY == dimY {
